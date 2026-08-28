@@ -12,10 +12,12 @@
     <ClInclude Include="Include\engine.h">
       <Filter>Include</Filter>
     </ClInclude>
+    <ClInclude Include="Include\Renderer\renderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\engine.cpp">
       <Filter>Source</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Renderer\renderer.cpp" />
   </ItemGroup>
 </Project>

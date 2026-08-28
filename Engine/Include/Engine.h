@@ -14,5 +14,4 @@ public:
 
 	void Update(float fDelta);
 
-
 };
