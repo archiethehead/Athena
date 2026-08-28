@@ -13,7 +13,7 @@ void CAthenaEngine::Update(float fDelta) {
 	
 		fTime = 0.0f;
 		iSeconds++;
-		printf("%d seconds have passed", iSeconds);
+		printf("\r%d seconds have passed", iSeconds);
 
 	}
 

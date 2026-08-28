@@ -19,10 +19,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\Engine.h" />
+    <ClInclude Include="Include\engine.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Source\Engine.cpp" />
+    <ClCompile Include="Source\engine.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>18.0</VCProjectVersion>
