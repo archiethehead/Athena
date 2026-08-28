@@ -1,0 +1,7 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Project Path="Athena.vcxproj" Id="5935379d-156a-4959-9c28-739964b1bff5" />
+</Solution>
