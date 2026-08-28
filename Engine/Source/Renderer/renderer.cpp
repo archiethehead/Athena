@@ -1,3 +1,15 @@
 #include "Renderer/renderer.h"
+#include "Renderer/opengl.h"
 
-IRenderer::s_EGraphicsAPI IRenderer::s_ICurrentGraphicsAPI = IRenderer::s_EGraphicsAPI::OpenGL;
+CBaseRenderer::s_EGraphicsAPI CBaseRenderer::s_ICurrentGraphicsAPI = CBaseRenderer::s_EGraphicsAPI::OpenGL;
+
+CBaseRenderer* CBaseRenderer::CreateRenderer() {
+
+	switch (CBaseRenderer::s_ICurrentGraphicsAPI) {
+	
+		case CBaseRenderer::s_EGraphicsAPI::OpenGL:
+			return new COpenGLRenderer();
+	
+	}
+
+}

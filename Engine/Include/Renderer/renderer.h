@@ -1,11 +1,11 @@
 #pragma once
 
 
-class IRenderer {
+class CBaseRenderer {
 
 public:
 
-	virtual ~IRenderer() = default;
+	virtual ~CBaseRenderer() = default;
 	
 	virtual bool Init();
 
@@ -20,6 +20,6 @@ public:
 	};
 	static s_EGraphicsAPI s_ICurrentGraphicsAPI;
 
-	static IRenderer* CreateRenderer();
+	static CBaseRenderer* CreateRenderer();
 
 };
