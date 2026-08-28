@@ -6,10 +6,10 @@ void CAthenaEngine::Update(float fDelta) {
 	static float fTime = 0.0f;
 	static int iSeconds = 0;
 	fTime += fDelta;
-	bool IsZero = fTime >= 1.0f;
+	bool bIsZero = fTime >= 1.0f;
 
 
-	if (IsZero) {
+	if (bIsZero) {
 	
 		fTime = 0.0f;
 		iSeconds++;
