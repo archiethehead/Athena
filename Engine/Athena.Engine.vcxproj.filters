@@ -13,11 +13,13 @@
       <Filter>Include</Filter>
     </ClInclude>
     <ClInclude Include="Include\Renderer\renderer.h" />
+    <ClInclude Include="Include\Viewport\viewport.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\engine.cpp">
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="Source\Renderer\renderer.cpp" />
+    <ClCompile Include="source\viewport\viewport.cpp" />
   </ItemGroup>
 </Project>

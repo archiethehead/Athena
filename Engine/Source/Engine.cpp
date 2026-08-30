@@ -1,4 +1,5 @@
 #include "Engine.h"
+#include "Viewport/viewport.h"
 #include <cstdio>
 
 CAthenaEngine* CAthenaEngine::s_PEngineSingleton = nullptr;
@@ -26,6 +27,9 @@ void CAthenaEngine::Update(float fDelta) {
 }
 
 CAthenaEngine* CAthenaEngine::GetEngine() {
+
+	CViewport* NewViewport = CViewport::GetViewport();
+	NewViewport->Init(540, 480);
 
 	if (CAthenaEngine::s_PEngineSingleton == nullptr) {
 	

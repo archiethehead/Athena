@@ -21,10 +21,12 @@
   <ItemGroup>
     <ClInclude Include="Include\engine.h" />
     <ClInclude Include="Include\Renderer\renderer.h" />
+    <ClInclude Include="Include\Viewport\viewport.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\engine.cpp" />
     <ClCompile Include="Source\Renderer\renderer.cpp" />
+    <ClCompile Include="source\viewport\viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="External\SDL\VisualC\SDL\SDL.vcxproj">
