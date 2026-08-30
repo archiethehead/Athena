@@ -3,11 +3,11 @@
 
 int main() {
 	
-	CAthenaEngine NewEngine = CAthenaEngine();
+	CAthenaEngine* PNewEngine = CAthenaEngine::GetEngine();
 
 	while (true) {
 
-		NewEngine.Update(CDelta::GetDeltaTime());
+		PNewEngine->Update(CDelta::GetDeltaTime());
 
 	}
 

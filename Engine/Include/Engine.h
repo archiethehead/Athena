@@ -9,9 +9,14 @@
 class DLL_LINK CAthenaEngine {
 
 public:
-	CAthenaEngine() = default;
-	~CAthenaEngine() = default;
+	~CAthenaEngine();
 
 	void Update(float fDelta);
+
+	static CAthenaEngine* GetEngine();
+
+private:
+	CAthenaEngine() = default;
+	static CAthenaEngine* s_PEngineSingleton;
 
 };

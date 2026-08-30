@@ -1,6 +1,14 @@
 #include "Engine.h"
 #include <cstdio>
 
+CAthenaEngine* CAthenaEngine::s_PEngineSingleton = nullptr;
+
+CAthenaEngine::~CAthenaEngine() {
+
+	CAthenaEngine::s_PEngineSingleton = nullptr;
+
+}
+
 void CAthenaEngine::Update(float fDelta) {
 
 	static float fTime = 0.0f;
@@ -14,5 +22,18 @@ void CAthenaEngine::Update(float fDelta) {
 		printf("\r%d seconds have passed", iSeconds);
 
 	}
+
+}
+
+CAthenaEngine* CAthenaEngine::GetEngine() {
+
+	if (CAthenaEngine::s_PEngineSingleton == nullptr) {
+	
+		CAthenaEngine NewEngine = CAthenaEngine();
+		CAthenaEngine::s_PEngineSingleton = &NewEngine;
+
+	}
+
+	return CAthenaEngine::s_PEngineSingleton;
 
 }
