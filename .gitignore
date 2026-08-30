@@ -70,3 +70,4 @@ Testing/
 # Visual Studio
 *.vs/
 *.user
+*x64/

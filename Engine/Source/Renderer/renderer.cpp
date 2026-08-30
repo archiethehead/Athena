@@ -12,4 +12,6 @@ CBaseRenderer* CBaseRenderer::CreateRenderer() {
 	
 	}
 
+	return new COpenGLRenderer();
+
 }

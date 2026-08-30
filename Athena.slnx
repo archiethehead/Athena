@@ -4,5 +4,6 @@
     <Platform Name="x86" />
   </Configurations>
   <Project Path="Engine/Athena.Engine.vcxproj" Id="5935379d-156a-4959-9c28-739964b1bff5" />
+  <Project Path="Engine/External/SDL/VisualC/SDL/SDL.vcxproj" Id="81ce8daf-ebb2-4761-8e45-b71abcca8c68" />
   <Project Path="Sandbox/Athena.Sandbox.vcxproj" Id="bedaf614-1060-4f76-ae48-73bc89c0fe4e" />
 </Solution>

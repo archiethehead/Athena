@@ -7,11 +7,11 @@ public:
 
 	virtual ~CBaseRenderer() = default;
 	
-	virtual bool Init();
+	virtual bool Init() { return true; };
 
-	virtual void ClearColour();
-	virtual void BeginFrame();
-	virtual void EndFrame();
+	virtual void ClearColour() {};
+	virtual void BeginFrame() {};
+	virtual void EndFrame() {};
 
 	enum class s_EGraphicsAPI: char {
 
