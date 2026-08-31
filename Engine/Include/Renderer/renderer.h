@@ -13,13 +13,12 @@ public:
 	virtual void BeginFrame() {};
 	virtual void EndFrame() {};
 
-	enum class s_EGraphicsAPI: char {
+	enum class m_EGraphicsAPI: char {
 
 		OpenGL
 
 	};
-	static s_EGraphicsAPI s_ICurrentGraphicsAPI;
-
+	static m_EGraphicsAPI s_ICurrentGraphicsAPI;
 	static CBaseRenderer* CreateRenderer();
 
 };

@@ -19,8 +19,9 @@ void CAthenaEngine::Update(float fDelta) {
 
 bool CAthenaEngine::Init(int x, int y) {
 
-	if (!m_PViewport.Init(x, y)) goto Error;
-	
+	if (!m_PViewport->Init(x, y)) goto Error;
+	if (!m_PRenderer->Init(m_PViewport->GetWindowHandle())) goto Error;
+
 	return true;
 
 Error:

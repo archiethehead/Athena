@@ -1,17 +1,25 @@
 #include "Renderer/renderer.h"
 #include "Renderer/openGL.h"
 
-CBaseRenderer::s_EGraphicsAPI CBaseRenderer::s_ICurrentGraphicsAPI = CBaseRenderer::s_EGraphicsAPI::OpenGL;
+CBaseRenderer::m_EGraphicsAPI CBaseRenderer::s_ICurrentGraphicsAPI = CBaseRenderer::m_EGraphicsAPI::OpenGL;
 
 CBaseRenderer* CBaseRenderer::CreateRenderer() {
 
-	switch (CBaseRenderer::s_ICurrentGraphicsAPI) {
-	
-		case CBaseRenderer::s_EGraphicsAPI::OpenGL:
-			return new COpenGLRenderer();
-	
+	static CBaseRenderer* s_PRendererSingleton = nullptr;
+
+	if (s_PRendererSingleton == nullptr) {
+
+		switch (CBaseRenderer::s_ICurrentGraphicsAPI) {
+
+		case CBaseRenderer::m_EGraphicsAPI::OpenGL:
+
+			s_PRendererSingleton = new COpenGLRenderer();
+
+
+		}
+
 	}
 
-	return new COpenGLRenderer();
+	return s_PRendererSingleton;
 
 }

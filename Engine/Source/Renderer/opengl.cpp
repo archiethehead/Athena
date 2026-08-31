@@ -1,7 +1,5 @@
 #include "Renderer/OpenGL.h"
 
-SDL_GLContext* g_PSDLGLContext_t =  nullptr;
-
 bool COpenGLRenderer::Init(void* WindowHandle) {
 
 	COpenGLRenderer::m_PWindowHandle = static_cast<SDL_Window*>(WindowHandle);

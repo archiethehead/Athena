@@ -7,6 +7,7 @@
 #endif
 
 #include "Viewport/viewport.h"
+#include "Renderer/renderer.h"
 
 class DLL_LINK CAthenaEngine {
 
@@ -17,7 +18,10 @@ public:
 	static CAthenaEngine& GetEngine();
 
 private:
-	CAthenaEngine() : m_PViewport(CViewport::GetViewport()) {};
-	CViewport& m_PViewport;
+	CAthenaEngine() :	m_PViewport(CBaseViewport::CreateViewport()),
+						m_PRenderer(CBaseRenderer::CreateRenderer()){};
+
+	CBaseViewport* m_PViewport;
+	CBaseRenderer* m_PRenderer;
 
 };

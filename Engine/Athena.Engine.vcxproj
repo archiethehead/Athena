@@ -22,12 +22,14 @@
     <ClInclude Include="Include\engine.h" />
     <ClInclude Include="Include\Renderer\OpenGL.h" />
     <ClInclude Include="Include\Renderer\renderer.h" />
+    <ClInclude Include="Include\Viewport\SDLViewport.h" />
     <ClInclude Include="Include\Viewport\viewport.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\engine.cpp" />
     <ClCompile Include="Source\Renderer\OpenGL.cpp" />
     <ClCompile Include="Source\Renderer\renderer.cpp" />
+    <ClCompile Include="Source\Viewport\SDLViewport.cpp" />
     <ClCompile Include="source\viewport\viewport.cpp" />
   </ItemGroup>
   <ItemGroup>

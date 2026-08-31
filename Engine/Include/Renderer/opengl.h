@@ -1,16 +1,13 @@
 #pragma once
 
 #include "Renderer/renderer.h"
-#include "SDL3/SDL.h"
-
-extern SDL_GLContext* g_PSDLGLContext_t;
+#include <SDL3/SDL_video.h>
 
 class COpenGLRenderer : public CBaseRenderer {
 
 public:
 	COpenGLRenderer() = default;
 	~COpenGLRenderer() = default;
-
 	bool Init(void* WindowHandle) override;
 
 private:

@@ -1,19 +1,19 @@
 #pragma once
 
-struct SDL_Window;
-
-extern SDL_Window* m_PViewportWindow;
-
-class CViewport {
+class CBaseViewport {
 
 public:
-	~CViewport() = default;
+	virtual ~CBaseViewport() = default;
+	virtual bool Init(int x, int y) { return false;  };
+	virtual void* GetWindowHandle() { return nullptr; }
+	static CBaseViewport* GetViewport();
 
-	bool Init(int x, int y);
-
-	static CViewport& GetViewport();
-
-private:
-	CViewport() = default;
+	enum class m_EViewportAPI : char {
+	
+		SDL3
+	
+	};
+	static m_EViewportAPI s_ICurrentViewportAPI;
+	static CBaseViewport* CreateViewport();
 
 };
