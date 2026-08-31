@@ -13,6 +13,8 @@ void CAthenaEngine::Update(float fDelta) {
 		iSeconds++;
 		Out("\r%u seconds have passed", iSeconds);
 
+		m_PRenderer->ClearColour();
+
 	}
 
 }

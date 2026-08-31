@@ -27,5 +27,6 @@
     <ClCompile Include="Source\Renderer\OpenGL.cpp" />
     <ClCompile Include="Source\Viewport\SDLViewport.cpp" />
     <ClCompile Include="Source\Debug.cpp" />
+    <ClCompile Include="External\GLAD\src\gl.c" />
   </ItemGroup>
 </Project>

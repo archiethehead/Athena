@@ -1,3 +1,6 @@
 [submodule "Engine/External/SDL"]
 	path = Engine/External/SDL
 	url = https://github.com/libsdl-org/SDL
+[submodule "Engine/External/GLAD"]
+	path = Engine/External/GLAD
+	url = https://github.com/nitrix/glad

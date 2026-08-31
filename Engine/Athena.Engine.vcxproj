@@ -27,6 +27,7 @@
     <ClInclude Include="Include\Viewport\viewport.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="External\GLAD\src\gl.c" />
     <ClCompile Include="Source\Debug.cpp" />
     <ClCompile Include="Source\engine.cpp" />
     <ClCompile Include="Source\Renderer\OpenGL.cpp" />
@@ -139,7 +140,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>Default</LanguageStandard>
       <AssemblerOutput>AssemblyCode</AssemblerOutput>
-      <AdditionalIncludeDirectories>.\Include;.\External\SDL\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Include;.\External\SDL\include;.\External\GLAD\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
