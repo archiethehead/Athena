@@ -2,6 +2,8 @@
 
 struct SDL_Window;
 
+extern SDL_Window* m_PViewportWindow;
+
 class CViewport {
 
 public:

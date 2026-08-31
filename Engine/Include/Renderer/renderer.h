@@ -7,7 +7,7 @@ public:
 
 	virtual ~CBaseRenderer() = default;
 	
-	virtual bool Init() { return true; };
+	virtual bool Init() { return false; }
 
 	virtual void ClearColour() {};
 	virtual void BeginFrame() {};

@@ -1,5 +1,5 @@
 #include "Renderer/renderer.h"
-#include "Renderer/opengl.h"
+#include "Renderer/openGL.h"
 
 CBaseRenderer::s_EGraphicsAPI CBaseRenderer::s_ICurrentGraphicsAPI = CBaseRenderer::s_EGraphicsAPI::OpenGL;
 
