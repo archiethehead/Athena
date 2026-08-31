@@ -1,17 +1,17 @@
 #include "Engine.h"
-#include <cstdio>
+#include "Debug.h"
 
 void CAthenaEngine::Update(float fDelta) {
 
 	static float fTime = 0.0f;
-	static int iSeconds = 0;
+	static unsigned int iSeconds = 0;
 	fTime += fDelta;
 
 	if (fTime >= 1.0f) {
 	
 		fTime = 0.0f;
 		iSeconds++;
-		printf("\r%d seconds have passed", iSeconds);
+		Out("\r%u seconds have passed", iSeconds);
 
 	}
 
@@ -19,9 +19,11 @@ void CAthenaEngine::Update(float fDelta) {
 
 bool CAthenaEngine::Init(int x, int y) {
 
+
 	if (!m_PViewport->Init(x, y)) goto Error;
 	if (!m_PRenderer->Init(m_PViewport->GetWindowHandle())) goto Error;
 
+	Out("Engine initialization success!");
 	return true;
 
 Error:

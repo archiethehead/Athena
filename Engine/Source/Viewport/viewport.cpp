@@ -1,6 +1,6 @@
 #include "Viewport/viewport.h"
 #include "Viewport/SDLViewport.h"
-#include <cstdio>
+
 
 CBaseViewport::m_EViewportAPI CBaseViewport::s_ICurrentViewportAPI = CBaseViewport::m_EViewportAPI::SDL3;
 

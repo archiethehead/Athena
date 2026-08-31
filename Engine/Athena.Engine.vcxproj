@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Debug.h" />
     <ClInclude Include="Include\engine.h" />
     <ClInclude Include="Include\Renderer\OpenGL.h" />
     <ClInclude Include="Include\Renderer\renderer.h" />
@@ -26,6 +27,7 @@
     <ClInclude Include="Include\Viewport\viewport.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Debug.cpp" />
     <ClCompile Include="Source\engine.cpp" />
     <ClCompile Include="Source\Renderer\OpenGL.cpp" />
     <ClCompile Include="Source\Renderer\renderer.cpp" />

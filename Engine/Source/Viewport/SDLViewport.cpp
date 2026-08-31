@@ -1,6 +1,6 @@
 #include "Viewport/SDLViewport.h"
 #include "SDL3/SDL.h"
-#include <cstdio>
+#include "debug.h"
 
 bool CSDLViewport::Init(int x, int y) {
 
@@ -14,7 +14,7 @@ bool CSDLViewport::Init(int x, int y) {
 
 Error:
 	SDL_Quit();
-	printf("ERROR: Viewport init failed, %s\n", SDL_GetError());
+	Out("ERROR: Viewport init failed, %s\n", SDL_GetError());
 	return false;
 
 }
