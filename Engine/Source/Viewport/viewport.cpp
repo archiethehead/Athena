@@ -3,19 +3,12 @@
 #include "SDL3/SDL.h"
 #include <cstdio>
 
-CViewport* CViewport::s_PViewportSingleton = nullptr;
 SDL_Window* m_PViewportWindow = nullptr;
-
-CViewport::~CViewport() {
-
-	CViewport::s_PViewportSingleton = nullptr;
-
-}
 
 bool CViewport::Init(int x, int y) {
 
-	SDL_Window* Window_t = NULL;
-	SDL_GLContext NewGLContext_t = NULL;
+	SDL_Window* Window_t = nullptr;
+	SDL_GLContext NewGLContext_t = nullptr;
 
 	if (!SDL_Init(SDL_INIT_VIDEO)) goto Error;
 	
@@ -40,15 +33,9 @@ Error:
 
 }
 
-CViewport* CViewport::GetViewport() {
+CViewport& CViewport::GetViewport() {
 
-	if (CViewport::s_PViewportSingleton == nullptr) {
-	
-		CViewport NewViewport = CViewport();
-		s_PViewportSingleton = &NewViewport;
-	
-	}
-
+	static CViewport s_PViewportSingleton;
 	return s_PViewportSingleton;
 
 }

@@ -7,14 +7,13 @@ extern SDL_Window* m_PViewportWindow;
 class CViewport {
 
 public:
-	~CViewport();
+	~CViewport() = default;
 
 	bool Init(int x, int y);
 
-	static CViewport* GetViewport();
+	static CViewport& GetViewport();
 
 private:
 	CViewport() = default;
-	static CViewport* s_PViewportSingleton;
 
 };

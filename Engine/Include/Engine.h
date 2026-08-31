@@ -6,17 +6,18 @@
 #define DLL_LINK __declspec(dllimport) 
 #endif
 
+#include "Viewport/viewport.h"
+
 class DLL_LINK CAthenaEngine {
 
 public:
-	~CAthenaEngine();
-
+	~CAthenaEngine() = default;
 	void Update(float fDelta);
-
-	static CAthenaEngine* GetEngine();
+	bool Init(int x, int y);
+	static CAthenaEngine& GetEngine();
 
 private:
-	CAthenaEngine() = default;
-	static CAthenaEngine* s_PEngineSingleton;
+	CAthenaEngine() : m_PViewport(CViewport::GetViewport()) {};
+	CViewport& m_PViewport;
 
 };

@@ -1,14 +1,5 @@
 #include "Engine.h"
-#include "Viewport/viewport.h"
 #include <cstdio>
-
-CAthenaEngine* CAthenaEngine::s_PEngineSingleton = nullptr;
-
-CAthenaEngine::~CAthenaEngine() {
-
-	CAthenaEngine::s_PEngineSingleton = nullptr;
-
-}
 
 void CAthenaEngine::Update(float fDelta) {
 
@@ -26,18 +17,20 @@ void CAthenaEngine::Update(float fDelta) {
 
 }
 
-CAthenaEngine* CAthenaEngine::GetEngine() {
+bool CAthenaEngine::Init(int x, int y) {
 
-	CViewport* NewViewport = CViewport::GetViewport();
-	NewViewport->Init(540, 480);
-
-	if (CAthenaEngine::s_PEngineSingleton == nullptr) {
+	if (!m_PViewport.Init(x, y)) goto Error;
 	
-		CAthenaEngine NewEngine = CAthenaEngine();
-		CAthenaEngine::s_PEngineSingleton = &NewEngine;
+	return true;
 
-	}
+Error:
+	return false;
 
-	return CAthenaEngine::s_PEngineSingleton;
+}
+
+CAthenaEngine& CAthenaEngine::GetEngine() {
+
+	static CAthenaEngine s_PEngineSingleton;
+	return s_PEngineSingleton;
 
 }
