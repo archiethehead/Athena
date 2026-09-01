@@ -1,24 +1,38 @@
 #include "Viewport/viewport.h"
-#include "Viewport/SDLViewport.h"
+#include "SDL3/SDL.h"
+#include "debug.h"
 
+bool CViewport::Init(int x, int y) {
 
-CBaseViewport::m_EViewportAPI CBaseViewport::s_ICurrentViewportAPI = CBaseViewport::m_EViewportAPI::SDL3;
+	if (!SDL_Init(SDL_INIT_VIDEO)) goto Error;
 
-CBaseViewport* CBaseViewport::CreateViewport() {
+	m_WindowHandle_t = SDL_CreateWindow("Athena Engine", x, y, SDL_WINDOW_OPENGL);
 
-	static CBaseViewport* s_PViewportSingleton = nullptr;
+	if (!m_WindowHandle_t) goto Error;
 
-	if (s_PViewportSingleton == nullptr) {
-	
-		switch (CBaseViewport::s_ICurrentViewportAPI) {
-		
-		case CBaseViewport::m_EViewportAPI::SDL3:
-			s_PViewportSingleton = new CSDLViewport();
-		
-		}
-	
-	}
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-	return s_PViewportSingleton;
+	return true;
+
+Error:
+	SDL_Quit();
+	Out("ERROR: Viewport init failed, %s\n", SDL_GetError());
+	return false;
+
+}
+
+void* CViewport::GetWindowHandle() {
+
+	void* PWindowHandle_t = static_cast<void*>(m_WindowHandle_t);
+	return PWindowHandle_t;
+
+}
+
+CViewport* CViewport::CreateViewport() {
+
+	static CViewport SViewport = CViewport();
+	return &SViewport;
 
 }

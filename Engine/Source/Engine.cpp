@@ -13,14 +13,11 @@ void CAthenaEngine::Update(float fDelta) {
 		iSeconds++;
 		Out("\r%u seconds have passed", iSeconds);
 
-		m_PRenderer->ClearColour();
-
 	}
 
 }
 
 bool CAthenaEngine::Init(int x, int y) {
-
 
 	if (!m_PViewport->Init(x, y)) goto Error;
 	if (!m_PRenderer->Init(m_PViewport->GetWindowHandle())) goto Error;

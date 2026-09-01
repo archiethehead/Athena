@@ -18,10 +18,10 @@ public:
 	static CAthenaEngine& GetEngine();
 
 private:
-	CAthenaEngine() :	m_PViewport(CBaseViewport::CreateViewport()),
+	CAthenaEngine() :	m_PViewport(CViewport::CreateViewport()),
 						m_PRenderer(CBaseRenderer::CreateRenderer()){};
 
-	CBaseViewport* m_PViewport;
+	CViewport* m_PViewport;
 	CBaseRenderer* m_PRenderer;
 
 };
