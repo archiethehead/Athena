@@ -8,7 +8,7 @@
 
 	#define DLL_LINK __declspec(dllimport) 
 
-#endif
+#endif // ifdef COMPILING_ENGINE
 
 #include "Viewport/viewport.h"
 #include "Renderer/renderer.h"

@@ -2,33 +2,24 @@
 #include "Debug.h"
 
 void CAthenaEngine::Update(float fDelta) {
-
-	static float fTime = 0.0f;
-	static unsigned int iSeconds = 0;
-	fTime += fDelta;
-
-	if (fTime >= 1.0f) {
 	
-		fTime = 0.0f;
-		iSeconds++;
-		DebugOut("%u seconds have passed\n", iSeconds);
-
-	}
+	return;
 
 }
 
 bool CAthenaEngine::Init(int x, int y) {
 
-	DebugOut("Initializing Engine:\n");
+	DEBUG_OUT("ATHENA ENGINE", OutputOptions::Header);
+	DEBUG_OUT("\nInitializing Engine", OutputOptions::Underline);
 
 	if (!m_PViewport->Init(x, y)) goto Error;
 	if (!m_PRenderer->Init(m_PViewport->GetWindowHandle())) goto Error;
 
-	DebugOut("Engine initialization success\n");
+	DEBUG_OUT("Engine initialization success", OutputOptions::None);
 	return true;
 
 Error:
-	DebugOut("Engine initialization failure\n");
+	DEBUG_OUT("Engine initialization failure", OutputOptions::Error);
 	return false;
 
 }

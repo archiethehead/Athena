@@ -11,13 +11,13 @@ bool COpenGLRenderer::Init(void* WindowHandle) {
 	if(!SDL_GL_MakeCurrent(m_PWindowHandle, m_OGLContext)) goto Error;
 	gladLoadGL((GLADloadfunc)SDL_GL_GetProcAddress);
 
-	DebugOut("OpenGL initialization success\n");
+	DEBUG_OUT("OpenGL initialization success", OutputOptions::None);
 
 	return true;
 
 Error:
 	SDL_Quit();
-	DebugOut("ERROR: OpenGL init failed, %s\n", SDL_GetError());
+	DEBUG_OUT("OpenGL init failed, %s", OutputOptions::Error, SDL_GetError());
 	return false;
 
 }

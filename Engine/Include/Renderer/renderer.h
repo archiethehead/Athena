@@ -12,7 +12,7 @@ public:
 	virtual void BeginFrame() {};
 	virtual void EndFrame() {};
 
-	enum class m_EGraphicsAPI: char {
+	enum m_EGraphicsAPI: char {
 
 		OpenGL
 
