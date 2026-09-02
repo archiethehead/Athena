@@ -5,8 +5,6 @@ struct SDL_Window;
 class CBaseRenderer {
 
 public:
-
-	virtual ~CBaseRenderer() = default;
 	
 	virtual bool Init(void* WindowHandle) { return false; }
 

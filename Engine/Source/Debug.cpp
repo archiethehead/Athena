@@ -1,13 +1,14 @@
+#ifdef _DEBUG
+
 #include "Debug.h"
 #include <cstdarg>
 #include <cstdio>
-
 
 #ifdef _WIN32
 
 #include <windows.h>
 
-#endif
+#endif // ifdef _WIN32
 
 void Out(const char* format, ...) {
 
@@ -25,6 +26,8 @@ void Out(const char* format, ...) {
 
 	puts(buffer);
 
-#endif
+#endif // ifdef _WIN32
 
 }
+
+#endif // ifdef _DEBUG

@@ -1,9 +1,13 @@
 #pragma once
 
 #ifdef COMPILING_ENGINE
-#define DLL_LINK __declspec(dllexport)
+
+	#define DLL_LINK __declspec(dllexport)
+
 #else
-#define DLL_LINK __declspec(dllimport) 
+
+	#define DLL_LINK __declspec(dllimport) 
+
 #endif
 
 #include "Viewport/viewport.h"
@@ -19,7 +23,8 @@ public:
 
 private:
 	CAthenaEngine() :	m_PViewport(CViewport::CreateViewport()),
-						m_PRenderer(CBaseRenderer::CreateRenderer()){};
+						m_PRenderer(CBaseRenderer::CreateRenderer())
+	{};
 
 	CViewport* m_PViewport;
 	CBaseRenderer* m_PRenderer;

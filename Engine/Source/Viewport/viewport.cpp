@@ -14,11 +14,13 @@ bool CViewport::Init(int x, int y) {
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
+	DebugOut("Viewport initialization success\n");
+
 	return true;
 
 Error:
 	SDL_Quit();
-	Out("ERROR: Viewport init failed, %s\n", SDL_GetError());
+	DebugOut("ERROR: Viewport init failed, %s\n", SDL_GetError());
 	return false;
 
 }

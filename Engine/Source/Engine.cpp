@@ -11,7 +11,7 @@ void CAthenaEngine::Update(float fDelta) {
 	
 		fTime = 0.0f;
 		iSeconds++;
-		Out("\r%u seconds have passed", iSeconds);
+		DebugOut("%u seconds have passed\n", iSeconds);
 
 	}
 
@@ -19,13 +19,16 @@ void CAthenaEngine::Update(float fDelta) {
 
 bool CAthenaEngine::Init(int x, int y) {
 
+	DebugOut("Initializing Engine:\n");
+
 	if (!m_PViewport->Init(x, y)) goto Error;
 	if (!m_PRenderer->Init(m_PViewport->GetWindowHandle())) goto Error;
 
-	Out("Engine initialization success!");
+	DebugOut("Engine initialization success\n");
 	return true;
 
 Error:
+	DebugOut("Engine initialization failure\n");
 	return false;
 
 }
