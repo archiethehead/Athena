@@ -32,7 +32,7 @@ void* CViewport::GetWindowHandle() {
 
 }
 
-CViewport* CViewport::CreateViewport() {
+CViewport* CViewport::GetViewport() {
 
 	static CViewport SViewport = CViewport();
 	return &SViewport;

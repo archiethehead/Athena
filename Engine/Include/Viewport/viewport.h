@@ -7,7 +7,7 @@ class CViewport {
 public:
 
 	~CViewport() = default;
-	static CViewport* CreateViewport();
+	static CViewport* GetViewport();
 
 	bool Init(int x, int y);
 	void* GetWindowHandle();

@@ -8,6 +8,7 @@
 	#ifdef _WIN32
 
 		#include <windows.h>
+		#include <intrin.h>
 
 	#endif // ifdef _WIN32	
 
@@ -17,13 +18,20 @@
 
 	void Out(const char* format, OutputOptions Option, ...) {
 
+		unsigned int buff;
+		_mm_lfence();
+		uint64_t StartCycles = __rdtscp(&buff);
+		_mm_lfence();
+
+		// TEST
+
 		va_list args;
 		va_start(args, Option);
-		vsnprintf(g_SBuffer, sizeof(g_SBuffer), format, args);
+		size_t Len = vsnprintf(g_SBuffer, sizeof(g_SBuffer), format, args);
 		va_end(args);
 
-		g_SOutputString = g_SBuffer;
-		int Len = (int)g_SOutputString.length();
+		g_SOutputString.clear();
+		g_SOutputString.append(g_SBuffer);
 
 		switch (Option) {
 		
@@ -53,8 +61,15 @@
 
 	#ifdef _WIN32
 
-		if (IsDebuggerPresent()) OutputDebugStringA(g_SOutputString.c_str());
-		else fputs(g_SOutputString.c_str(), stdout);
+		//if (IsDebuggerPresent()) OutputDebugStringA(g_SOutputString.c_str());
+		//else fputs(g_SOutputString.c_str(), stdout);
+
+		// END TEST
+		_mm_lfence();
+		uint64_t EndCycles = __rdtscp(&buff);
+		_mm_lfence();
+
+		printf("\n\nCycles to complete function: %I64d\n\n", EndCycles - StartCycles);
 
 	#else
 

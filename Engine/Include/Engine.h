@@ -22,7 +22,7 @@ public:
 	static CAthenaEngine& GetEngine();
 
 private:
-	CAthenaEngine() :	m_PViewport(CViewport::CreateViewport()),
+	CAthenaEngine() :	m_PViewport(CViewport::GetViewport()),
 						m_PRenderer(CBaseRenderer::CreateRenderer())
 	{};
 

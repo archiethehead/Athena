@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Include\Debug.h" />
+    <ClInclude Include="Include\Debug\Logger.h" />
     <ClInclude Include="Include\engine.h" />
     <ClInclude Include="Include\Renderer\OpenGL.h" />
     <ClInclude Include="Include\Renderer\renderer.h" />
@@ -27,6 +28,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\GLAD\src\gl.c" />
+    <ClCompile Include="Source\Debug\Logger.cpp" />
     <ClCompile Include="Source\Debug.cpp" />
     <ClCompile Include="Source\engine.cpp" />
     <ClCompile Include="Source\Renderer\OpenGL.cpp" />
@@ -139,6 +141,8 @@
       <LanguageStandard>Default</LanguageStandard>
       <AssemblerOutput>AssemblyCode</AssemblerOutput>
       <AdditionalIncludeDirectories>.\Include;.\External\SDL\include;.\External\GLAD\include</AdditionalIncludeDirectories>
+      <Optimization>MaxSpeed</Optimization>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
