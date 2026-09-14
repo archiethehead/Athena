@@ -16,13 +16,15 @@ enum class OutputOptions : uint8_t {
 
 #ifdef _DEBUG
 
+#define DEBUG_OUT(x, y, ...) CLogger::GetLogger().Out(x, y, ##__VA_ARGS__)
+
 class CLogger {
 
 public:
 
-	static constexpr size_t LOG_BUFFER_SIZE = 2048;
+	static constexpr size_t LOG_BUFFER_SIZE = 1024;
 	static constexpr size_t LOG_BUFFER_MASK = LOG_BUFFER_SIZE - 1;
-	static constexpr size_t LOG_SIZE = 512;
+	static constexpr size_t LOG_SIZE = 256;
 	
 	~CLogger();
 	static CLogger& GetLogger();
@@ -39,14 +41,18 @@ private:
 
 	};
 
-	Log m_LogBuffer_s[LOG_BUFFER_SIZE];
+	Log m_LogBuffer_s[LOG_BUFFER_SIZE] = {};
 	alignas(64) std::atomic<size_t> m_STTail;
 	alignas(64) std::atomic<size_t> m_STHead;
-	std::thread m_OutputListener;
+	std::thread m_LoggerListener;
 
 	CLogger();
 	void ListenLoop();
 
 };
+
+#else
+
+#define DEBUG_OUT(x, y, ...)
 
 #endif // ifdef _DEBUG

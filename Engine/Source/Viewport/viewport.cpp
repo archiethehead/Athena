@@ -1,6 +1,6 @@
 #include "Viewport/viewport.h"
 #include "SDL3/SDL.h"
-#include "debug.h"
+#include "Debug/Logger.h"
 
 bool CViewport::Init(int x, int y) {
 

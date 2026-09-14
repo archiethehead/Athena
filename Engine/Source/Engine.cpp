@@ -1,5 +1,5 @@
 #include "Engine.h"
-#include "Debug.h"
+#include "Debug/Logger.h"
 
 void CAthenaEngine::Update(float fDelta) {
 	

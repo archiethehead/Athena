@@ -1,5 +1,5 @@
 #include "Renderer/OpenGL.h"
-#include "debug.h"
+#include "Debug/Logger.h"
 #include "glad/gl.h"
 
 bool COpenGLRenderer::Init(void* WindowHandle) {

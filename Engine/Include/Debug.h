@@ -19,6 +19,6 @@ enum OutputOptions : uint32_t {
 
 #else
 
-	#define DEBUG_OUT(x, OutputOptions EOptions, ...)
+	#define DEBUG_OUT(x, y, ...)
 
 #endif
