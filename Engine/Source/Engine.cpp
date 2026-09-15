@@ -16,7 +16,7 @@ CAthenaEngine::CAthenaEngine() :	m_PViewport(CViewport::GetViewport()),
 
 #ifdef _WIN32
 
-	SetUnhandledExceptionFilter(ExceptionHandler);
+	SetUnhandledExceptionFilter(HandleExceptionCrash);
 
 #endif
 
@@ -40,10 +40,8 @@ void CAthenaEngine::SetCrashCallback(CrashCallbackFunction CrashCallback) {
 
 bool CAthenaEngine::Init(int x, int y) {
 
-	int a = 0;
 	DEBUG_OUT("ATHENA ENGINE", OutputOptions::Header);
 	DEBUG_OUT("\nInitializing Engine", OutputOptions::Underline);
-	a /= 0;
 
 	if (!m_PViewport->Init(x, y)) goto Error;
 	if (!m_PRenderer->Init(m_PViewport->GetWindowHandle())) goto Error;
@@ -66,7 +64,9 @@ CAthenaEngine& CAthenaEngine::GetEngine() {
 
 #ifdef _WIN32
 
-LONG WINAPI CAthenaEngine::ExceptionHandler(struct _EXCEPTION_POINTERS* ExceptionInformation) {
+LONG WINAPI CAthenaEngine::HandleExceptionCrash(struct _EXCEPTION_POINTERS* ExceptionInformation) {
+
+	CrashProcedure();
 
 	const char* CrashDescription = "An unkown exception has occured, terminating program.";
 	DWORD Exception = ExceptionInformation->ExceptionRecord->ExceptionCode;
@@ -120,7 +120,7 @@ LONG WINAPI CAthenaEngine::ExceptionHandler(struct _EXCEPTION_POINTERS* Exceptio
 
 #endif // _MSVC_LANG == 202302L
 
-	Crash();
+	KillProgram();
 
 	return EXCEPTION_EXECUTE_HANDLER;
 
@@ -130,6 +130,8 @@ LONG WINAPI CAthenaEngine::ExceptionHandler(struct _EXCEPTION_POINTERS* Exceptio
 
 
 void CAthenaEngine::HandleSignalCrash(int Signal) {
+
+	CrashProcedure();
 
 	const char* CrashDescription;
 
@@ -165,13 +167,17 @@ void CAthenaEngine::HandleSignalCrash(int Signal) {
 
 #endif
 
-	Crash();
+	KillProgram();
 
 }
 
-void CAthenaEngine::Crash() {
+void CAthenaEngine::CrashProcedure() {
 
 	FLUSH_LOGGER();
+
+}
+
+void CAthenaEngine::KillProgram() {
 
 	if (s_SandboxCrashCallback != nullptr)
 		s_SandboxCrashCallback();

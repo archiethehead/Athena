@@ -44,11 +44,12 @@ private:
 
 #ifdef _WIN32
 
-	static LONG WINAPI ExceptionHandler(struct _EXCEPTION_POINTERS* ExceptionInformation);
+	static LONG WINAPI HandleExceptionCrash(struct _EXCEPTION_POINTERS* ExceptionInformation);
 
 #endif // ifdef _WIN32
 
 	static void HandleSignalCrash(int Signal);
-	static void Crash();
+	static void CrashProcedure();
+	static void KillProgram();
 
 };
