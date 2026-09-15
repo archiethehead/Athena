@@ -10,11 +10,8 @@ CLogger::CLogger() {
 
 CLogger::~CLogger() {
 
-	if (m_LoggerListener.joinable()) {
-	
+	if (m_LoggerListener.joinable())
 		m_LoggerListener.join();
-	
-	}
 
 }
 
@@ -33,6 +30,18 @@ void CLogger::Out(const char* Format, OutputOptions Option, ...) {
 	va_start(args, Option);
 	size_t Len = vsnprintf(m_LogBuffer_s[m_STHead & LOG_BUFFER_MASK].Log, sizeof(m_LogBuffer_s[m_STHead & LOG_BUFFER_MASK].Log), Format, args);
 	va_end(args);
+
+}
+
+void CLogger::Flush() {
+
+	while (m_STTail < m_STHead) {
+		
+		m_STTail++;
+		Log* CurrentLog = &(m_LogBuffer_s[m_STTail & LOG_BUFFER_MASK]);
+		printf("%s (Tail = %zu, Head = %zu)\n", CurrentLog->Log, m_STTail.load(), m_STHead.load());
+	
+	}
 
 }
 

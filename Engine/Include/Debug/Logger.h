@@ -17,6 +17,7 @@ enum class OutputOptions : uint8_t {
 #ifdef _DEBUG
 
 #define DEBUG_OUT(x, y, ...) CLogger::GetLogger().Out(x, y, ##__VA_ARGS__)
+#define FLUSH_LOGGER() CLogger::GetLogger().Flush()
 
 class CLogger {
 
@@ -30,6 +31,7 @@ public:
 	static CLogger& GetLogger();
 	
 	void Out(const char* Format, OutputOptions Option, ...);
+	void Flush();
 
 private:
 
@@ -54,5 +56,6 @@ private:
 #else
 
 #define DEBUG_OUT(x, y, ...)
+#define FLUSH()
 
 #endif // ifdef _DEBUG

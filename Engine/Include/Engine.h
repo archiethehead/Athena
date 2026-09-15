@@ -49,5 +49,6 @@ private:
 #endif // ifdef _WIN32
 
 	static void HandleSignalCrash(int Signal);
+	static void Crash();
 
 };

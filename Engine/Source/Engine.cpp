@@ -40,8 +40,10 @@ void CAthenaEngine::SetCrashCallback(CrashCallbackFunction CrashCallback) {
 
 bool CAthenaEngine::Init(int x, int y) {
 
+	int a = 0;
 	DEBUG_OUT("ATHENA ENGINE", OutputOptions::Header);
 	DEBUG_OUT("\nInitializing Engine", OutputOptions::Underline);
+	a /= 0;
 
 	if (!m_PViewport->Init(x, y)) goto Error;
 	if (!m_PRenderer->Init(m_PViewport->GetWindowHandle())) goto Error;
@@ -116,10 +118,9 @@ LONG WINAPI CAthenaEngine::ExceptionHandler(struct _EXCEPTION_POINTERS* Exceptio
 
 	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Crash Report", CrashDescription, CViewport::GetViewport()->GetWindowHandle());
 
-#endif
+#endif // _MSVC_LANG == 202302L
 
-	if (s_SandboxCrashCallback != nullptr)
-		s_SandboxCrashCallback();
+	Crash();
 
 	return EXCEPTION_EXECUTE_HANDLER;
 
@@ -164,7 +165,15 @@ void CAthenaEngine::HandleSignalCrash(int Signal) {
 
 #endif
 
+	Crash();
+
+}
+
+void CAthenaEngine::Crash() {
+
+	FLUSH_LOGGER();
+
 	if (s_SandboxCrashCallback != nullptr)
 		s_SandboxCrashCallback();
 
-}
+};
