@@ -31,6 +31,6 @@ private:
 	CBaseRenderer* m_PRenderer;
 
 	CAthenaEngine();
-	static void HandleCrash(int Signal);
+	static void HandleSignalCrash(int Signal);
 
 };

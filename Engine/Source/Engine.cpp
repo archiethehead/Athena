@@ -2,15 +2,21 @@
 #include "Debug/Logger.h"
 #include "SDL3/SDL_messagebox.h"
 #include <csignal>
-#include <stacktrace>
+
+#if ((defined _MSVC_LANG) && (_MSVC_LANG == 202302L) && (defined _DEBUG))
+
+	#include <stacktrace>
+
+#endif
+
 #include <string>
 
 CAthenaEngine::CAthenaEngine() :	m_PViewport(CViewport::GetViewport()),
 									m_PRenderer(CBaseRenderer::CreateRenderer()) {
 
-	std::signal(SIGFPE, HandleCrash);
-	std::signal(SIGILL, HandleCrash);
-	std::signal(SIGSEGV, HandleCrash);	
+	std::signal(SIGFPE, HandleSignalCrash);
+	std::signal(SIGILL, HandleSignalCrash);
+	std::signal(SIGSEGV, HandleSignalCrash);	
 
 };
 
@@ -28,7 +34,7 @@ void CAthenaEngine::SetCrashCallback(CrashCallbackFunction CrashCallback) {
 
 bool CAthenaEngine::Init(int x, int y) {
 
-	HandleCrash(SIGILL);
+	raise(SIGILL);
 
 	DEBUG_OUT("ATHENA ENGINE", OutputOptions::Header);
 	DEBUG_OUT("\nInitializing Engine", OutputOptions::Underline);
@@ -52,7 +58,7 @@ CAthenaEngine& CAthenaEngine::GetEngine() {
 
 }
 
-void CAthenaEngine::HandleCrash(int Signal) {
+void CAthenaEngine::HandleSignalCrash(int Signal) {
 
 	const char* CrashDescription;
 
@@ -76,10 +82,17 @@ void CAthenaEngine::HandleCrash(int Signal) {
 	
 	}
 
+#if ((((defined __linux__) && (defined __cplusplus) && (__cplusplus == 202302L)) || ((defined _WIN32) && (defined _MSVC_LANG) && (_MSVC_LANG == 202302L))) && (defined _DEBUG))
+
 	std::stacktrace CStackTrace = std::stacktrace::current();
 	std::string CrashMessage = std::to_string(CStackTrace).insert(0, "\nStack Trace:\n").insert(0, CrashDescription);
-
 	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Crash Report", CrashMessage.c_str(), CViewport::GetViewport()->GetWindowHandle());
+
+#else
+
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Crash Report", CrashDescription, CViewport::GetViewport()->GetWindowHandle());
+
+#endif
 
 	if (s_SandboxCrashCallback != nullptr)
 		s_SandboxCrashCallback();

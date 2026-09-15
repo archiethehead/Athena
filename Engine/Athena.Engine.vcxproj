@@ -141,8 +141,10 @@
       <LanguageStandard>stdcpp23</LanguageStandard>
       <AssemblerOutput>AssemblyCode</AssemblerOutput>
       <AdditionalIncludeDirectories>.\Include;.\External\SDL\include;.\External\GLAD\include</AdditionalIncludeDirectories>
-      <Optimization>MaxSpeed</Optimization>
+      <Optimization>Disabled</Optimization>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalOptions>/experimental:deterministic /pathmap:"$(MSBuildProjectDirectory)"=.\Athena\Engine %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -165,6 +167,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/experimental:deterministic /pathmap:"$(MSBuildProjectDirectory)"=.\Athena\Engine %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -177,4 +180,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <PropertyGroup>
+    <PathMap>$(MSBuildProjectDirectory)=./</PathMap>
+  </PropertyGroup>
 </Project>
