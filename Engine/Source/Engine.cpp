@@ -2,6 +2,8 @@
 #include "Debug/Logger.h"
 #include "SDL3/SDL_messagebox.h"
 #include <csignal>
+#include <stacktrace>
+#include <string>
 
 CAthenaEngine::CAthenaEngine() :	m_PViewport(CViewport::GetViewport()),
 									m_PRenderer(CBaseRenderer::CreateRenderer()) {
@@ -52,29 +54,32 @@ CAthenaEngine& CAthenaEngine::GetEngine() {
 
 void CAthenaEngine::HandleCrash(int Signal) {
 
-	const char* CrashMessage;
+	const char* CrashDescription;
 
 	switch (Signal) {
 	
 	case (SIGFPE):
-		CrashMessage = "A floating point exception was triggered.";
+		CrashDescription = "A floating point exception was triggered.\n";
 		break;
 
 	case (SIGILL):
-		CrashMessage = "An illegal instruction was encountered. This many be the result of installing the incorrect binaries for your machine architecture.";
+		CrashDescription = "An illegal instruction was encountered. This many be the result of installing the incorrect binaries for your machine's architecture.\n";
 		break;
 
 	case (SIGSEGV):
-		CrashMessage = "An illegal memory operation occured.";
+		CrashDescription = "An illegal memory operation occured.\n";
 		break;
 
 	default:
-		CrashMessage = "?";
+		CrashDescription = "?";
 		break;
 	
 	}
 
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Crash Report", CrashMessage, CViewport::GetViewport()->GetWindowHandle());
+	std::stacktrace CStackTrace = std::stacktrace::current();
+	std::string CrashMessage = std::to_string(CStackTrace).insert(0, "\nStack Trace:\n").insert(0, CrashDescription);
+
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Crash Report", CrashMessage.c_str(), CViewport::GetViewport()->GetWindowHandle());
 
 	if (s_SandboxCrashCallback != nullptr)
 		s_SandboxCrashCallback();
