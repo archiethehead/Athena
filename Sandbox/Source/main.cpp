@@ -11,10 +11,17 @@
 
 #endif // ifdef _WIN32
 
+void Crash(const char* SCrashMessage) {
+
+	exit(EXIT_FAILURE);
+
+}
+
 
 int main() {
 	
 	CAthenaEngine Engine = CAthenaEngine::GetEngine();
+	Engine.SetCrashCallback(Crash);
 
 	if (!Engine.Init(540, 480)) return -1;
 

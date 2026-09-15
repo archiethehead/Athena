@@ -13,20 +13,24 @@
 #include "Viewport/viewport.h"
 #include "Renderer/renderer.h"
 
+typedef void (*CrashCallbackFunction)(const char*);
+static CrashCallbackFunction s_SandboxCrashCallback = nullptr;
+
 class DLL_LINK CAthenaEngine {
 
 public:
 	~CAthenaEngine() = default;
 	void Update(float fDelta);
+	void SetCrashCallback(CrashCallbackFunction FPCrashCallback);
 	bool Init(int x, int y);
 	static CAthenaEngine& GetEngine();
 
 private:
-	CAthenaEngine() :	m_PViewport(CViewport::GetViewport()),
-						m_PRenderer(CBaseRenderer::CreateRenderer())
-	{};
 
 	CViewport* m_PViewport;
 	CBaseRenderer* m_PRenderer;
+
+	CAthenaEngine();
+	void HandleCrash(int Signal);
 
 };
