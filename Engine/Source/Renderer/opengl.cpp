@@ -2,9 +2,9 @@
 #include "Debug/Logger.h"
 #include "glad/gl.h"
 
-bool COpenGLRenderer::Init(void* WindowHandle) {
+bool COpenGLRenderer::Init(SDL_Window* WindowHandle) {
 
-	COpenGLRenderer::m_PWindowHandle = static_cast<SDL_Window*>(WindowHandle);
+	COpenGLRenderer::m_PWindowHandle = WindowHandle;
 	COpenGLRenderer::m_OGLContext = SDL_GL_CreateContext(COpenGLRenderer::m_PWindowHandle);
 
 	if (!COpenGLRenderer::m_OGLContext) goto Error;

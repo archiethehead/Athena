@@ -10,7 +10,7 @@ public:
 	static CViewport* GetViewport();
 
 	bool Init(int x, int y);
-	void* GetWindowHandle();
+	SDL_Window* GetWindowHandle();
 
 private:
 	CViewport() = default;

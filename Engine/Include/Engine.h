@@ -13,7 +13,7 @@
 #include "Viewport/viewport.h"
 #include "Renderer/renderer.h"
 
-typedef void (*CrashCallbackFunction)(const char*);
+typedef void (*CrashCallbackFunction)();
 static CrashCallbackFunction s_SandboxCrashCallback = nullptr;
 
 class DLL_LINK CAthenaEngine {

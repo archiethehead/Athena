@@ -25,10 +25,9 @@ Error:
 
 }
 
-void* CViewport::GetWindowHandle() {
+SDL_Window* CViewport::GetWindowHandle() {
 
-	void* PWindowHandle_t = static_cast<void*>(m_WindowHandle_t);
-	return PWindowHandle_t;
+	return m_WindowHandle_t;
 
 }
 

@@ -11,9 +11,8 @@
 
 #endif // ifdef _WIN32
 
-void Crash(const char* SCrashMessage) {
+void Crash() {
 
-	printf("%s", SCrashMessage);
 	exit(EXIT_FAILURE);
 
 }

@@ -1,5 +1,6 @@
 #include "Engine.h"
 #include "Debug/Logger.h"
+#include "SDL3/SDL_messagebox.h"
 #include <csignal>
 
 CAthenaEngine::CAthenaEngine() :	m_PViewport(CViewport::GetViewport()),
@@ -73,7 +74,9 @@ void CAthenaEngine::HandleCrash(int Signal) {
 	
 	}
 
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Crash Report", CrashMessage, CViewport::GetViewport()->GetWindowHandle());
+
 	if (s_SandboxCrashCallback != nullptr)
-		s_SandboxCrashCallback(CrashMessage);
+		s_SandboxCrashCallback();
 
 }

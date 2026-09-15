@@ -1,7 +1,7 @@
 #pragma once
+#include "SDL3/SDL.h"
 
 #include "Renderer/renderer.h"
-#include "SDL3/SDL.h"
 
 
 class COpenGLRenderer : public CBaseRenderer {
@@ -9,7 +9,7 @@ class COpenGLRenderer : public CBaseRenderer {
 public:
 	COpenGLRenderer() = default;
 	~COpenGLRenderer() = default;
-	bool Init(void* WindowHandle) override;
+	bool Init(SDL_Window* WindowHandle) override;
 	void ClearColour() {};
 
 private:

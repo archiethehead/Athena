@@ -6,7 +6,7 @@ class CBaseRenderer {
 
 public:
 	
-	virtual bool Init(void* WindowHandle) { return false; }
+	virtual bool Init(SDL_Window* WindowHandle) { return false; }
 
 	virtual void ClearColour() {};
 	virtual void BeginFrame() {};
