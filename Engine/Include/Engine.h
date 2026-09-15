@@ -1,14 +1,24 @@
 #pragma once
 
-#ifdef COMPILING_ENGINE
+#ifdef _WIN32
 
-	#define DLL_LINK __declspec(dllexport)
+#include <windows.h>
+
+	#ifdef COMPILING_ENGINE
+		
+		#define DLL_LINK __declspec(dllexport)
+
+	#else
+
+		#define DLL_LINK __declspec(dllimport) 
+
+	#endif // ifdef COMPILING_ENGINE
 
 #else
 
-	#define DLL_LINK __declspec(dllimport) 
+	#define DLL_LINK
 
-#endif // ifdef COMPILING_ENGINE
+#endif // ifdef _WIN32s
 
 #include "Viewport/viewport.h"
 #include "Renderer/renderer.h"
@@ -31,6 +41,13 @@ private:
 	CBaseRenderer* m_PRenderer;
 
 	CAthenaEngine();
+
+#ifdef _WIN32
+
+	static LONG WINAPI ExceptionHandler(struct _EXCEPTION_POINTERS* ExceptionInformation);
+
+#endif // ifdef _WIN32
+
 	static void HandleSignalCrash(int Signal);
 
 };

@@ -14,6 +14,12 @@
 CAthenaEngine::CAthenaEngine() :	m_PViewport(CViewport::GetViewport()),
 									m_PRenderer(CBaseRenderer::CreateRenderer()) {
 
+#ifdef _WIN32
+
+	SetUnhandledExceptionFilter(ExceptionHandler);
+
+#endif
+
 	std::signal(SIGFPE, HandleSignalCrash);
 	std::signal(SIGILL, HandleSignalCrash);
 	std::signal(SIGSEGV, HandleSignalCrash);	
@@ -33,8 +39,6 @@ void CAthenaEngine::SetCrashCallback(CrashCallbackFunction CrashCallback) {
 }
 
 bool CAthenaEngine::Init(int x, int y) {
-
-	raise(SIGILL);
 
 	DEBUG_OUT("ATHENA ENGINE", OutputOptions::Header);
 	DEBUG_OUT("\nInitializing Engine", OutputOptions::Underline);
@@ -57,6 +61,72 @@ CAthenaEngine& CAthenaEngine::GetEngine() {
 	return s_PEngineSingleton;
 
 }
+
+#ifdef _WIN32
+
+LONG WINAPI CAthenaEngine::ExceptionHandler(struct _EXCEPTION_POINTERS* ExceptionInformation) {
+
+	const char* CrashDescription = "An unkown exception has occured, terminating program.";
+	DWORD Exception = ExceptionInformation->ExceptionRecord->ExceptionCode;
+
+	switch (Exception) {
+
+	case EXCEPTION_IN_PAGE_ERROR:
+		CrashDescription = "The application attempted to access a memory-page that doesn't exist. This can occur as a result of the storage medium the software exists on being removed during execution.\n";
+		break;
+
+	case EXCEPTION_INT_OVERFLOW:
+	case EXCEPTION_FLT_OVERFLOW:
+		CrashDescription = "A floating-point/integer overflow ocurred.\n";
+		break;
+	
+	case EXCEPTION_FLT_INVALID_OPERATION:
+	case EXCEPTION_FLT_DIVIDE_BY_ZERO:
+		CrashDescription = "An illegal floating point operation (e.g., divide by 0) occured.\n";
+		break;
+
+	case EXCEPTION_INT_DIVIDE_BY_ZERO:
+		CrashDescription = "A integer divide by zero exception occured.\n";
+		break;
+
+	case EXCEPTION_ILLEGAL_INSTRUCTION:
+		CrashDescription = "An illegal instruction was encountered. This many be the result of installing the incorrect binaries for your machine's architecture.\n";
+		break;
+
+	case EXCEPTION_ACCESS_VIOLATION:
+		CrashDescription = "An illegal memory operation occured.\n";
+		break;
+
+	case EXCEPTION_ARRAY_BOUNDS_EXCEEDED:
+		CrashDescription = "The bounds of an array were exceeded.\n";
+
+	case EXCEPTION_STACK_OVERFLOW:
+		CrashDescription = "A stack memory overflow occured.\n";
+		break;
+
+	}
+
+#if _MSVC_LANG == 202302L
+
+	std::stacktrace CStackTrace = std::stacktrace::current();
+	std::string CrashMessage = std::to_string(CStackTrace).insert(0, "\nStack Trace:\n").insert(0, CrashDescription);
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Crash Report", CrashMessage.c_str(), CViewport::GetViewport()->GetWindowHandle());
+
+#else
+
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Crash Report", CrashDescription, CViewport::GetViewport()->GetWindowHandle());
+
+#endif
+
+	if (s_SandboxCrashCallback != nullptr)
+		s_SandboxCrashCallback();
+
+	return EXCEPTION_EXECUTE_HANDLER;
+
+}
+
+#endif // ifdef _WIN32
+
 
 void CAthenaEngine::HandleSignalCrash(int Signal) {
 
