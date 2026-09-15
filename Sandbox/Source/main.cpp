@@ -13,6 +13,7 @@
 
 void Crash(const char* SCrashMessage) {
 
+	printf("%s", SCrashMessage);
 	exit(EXIT_FAILURE);
 
 }

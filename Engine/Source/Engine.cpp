@@ -1,8 +1,15 @@
 #include "Engine.h"
 #include "Debug/Logger.h"
+#include <csignal>
 
 CAthenaEngine::CAthenaEngine() :	m_PViewport(CViewport::GetViewport()),
-									m_PRenderer(CBaseRenderer::CreateRenderer()) {};
+									m_PRenderer(CBaseRenderer::CreateRenderer()) {
+
+	std::signal(SIGFPE, HandleCrash);
+	std::signal(SIGILL, HandleCrash);
+	std::signal(SIGSEGV, HandleCrash);	
+
+};
 
 void CAthenaEngine::Update(float fDelta) {
 	
@@ -18,7 +25,7 @@ void CAthenaEngine::SetCrashCallback(CrashCallbackFunction CrashCallback) {
 
 bool CAthenaEngine::Init(int x, int y) {
 
-	HandleCrash(2);
+	HandleCrash(SIGILL);
 
 	DEBUG_OUT("ATHENA ENGINE", OutputOptions::Header);
 	DEBUG_OUT("\nInitializing Engine", OutputOptions::Underline);
@@ -44,7 +51,29 @@ CAthenaEngine& CAthenaEngine::GetEngine() {
 
 void CAthenaEngine::HandleCrash(int Signal) {
 
+	const char* CrashMessage;
+
+	switch (Signal) {
+	
+	case (SIGFPE):
+		CrashMessage = "A floating point exception was triggered.";
+		break;
+
+	case (SIGILL):
+		CrashMessage = "An illegal instruction was encountered. This many be the result of installing the incorrect binaries for your machine architecture.";
+		break;
+
+	case (SIGSEGV):
+		CrashMessage = "An illegal memory operation occured.";
+		break;
+
+	default:
+		CrashMessage = "?";
+		break;
+	
+	}
+
 	if (s_SandboxCrashCallback != nullptr)
-		s_SandboxCrashCallback("Crash :(");
+		s_SandboxCrashCallback(CrashMessage);
 
 }
