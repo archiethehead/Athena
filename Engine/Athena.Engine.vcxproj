@@ -144,7 +144,7 @@
       <Optimization>Disabled</Optimization>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalOptions>/experimental:deterministic /pathmap:"$(MSBuildProjectDirectory)"=.\Athena\Engine %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/experimental:deterministic /pathmap:"$(MSBuildProjectDirectory)"=https:\\github.com\archiethehead\Athena\tree\Engine %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

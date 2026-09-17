@@ -118,7 +118,7 @@
       <LanguageStandard>stdcpp20</LanguageStandard>
       <AdditionalIncludeDirectories>.\Include;..\Engine\Include</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <AdditionalOptions>/experimental:deterministic /pathmap:"$(MSBuildProjectDirectory)"=.\Athena\Sandbox %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalOptions>/experimental:deterministic /pathmap:"$(MSBuildProjectDirectory)"=https:\\github.com\archiethehead\Athena\tree\Sandbox %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

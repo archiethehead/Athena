@@ -17,6 +17,7 @@ CAthenaEngine::CAthenaEngine() :	m_PViewport(CViewport::GetViewport()),
 #ifdef _WIN32
 
 	SetUnhandledExceptionFilter(HandleExceptionCrash);
+	AddVectoredContinueHandler(1, HandleExceptionCrash);
 
 #endif
 
@@ -39,6 +40,9 @@ void CAthenaEngine::SetCrashCallback(CrashCallbackFunction CrashCallback) {
 }
 
 bool CAthenaEngine::Init(int x, int y) {
+
+	int a = 0;
+	a /= 0;
 
 	DEBUG_OUT("ATHENA ENGINE", OutputOptions::Header);
 	DEBUG_OUT("\nInitializing Engine", OutputOptions::Underline);
