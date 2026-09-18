@@ -41,20 +41,17 @@ void CAthenaEngine::SetCrashCallback(CrashCallbackFunction CrashCallback) {
 
 bool CAthenaEngine::Init(int x, int y) {
 
-	int a = 0;
-	a /= 0;
-
-	DEBUG_OUT("ATHENA ENGINE", OutputOptions::Header);
-	DEBUG_OUT("\nInitializing Engine", OutputOptions::Underline);
+	DEBUG_OUT("ATHENA ENGINE\n", OutputOptions::None);
+	DEBUG_OUT("\nInitializing Engine\n", OutputOptions::None);
 
 	if (!m_PViewport->Init(x, y)) goto Error;
 	if (!m_PRenderer->Init(m_PViewport->GetWindowHandle())) goto Error;
 
-	DEBUG_OUT("Engine initialization success", OutputOptions::None);
+	DEBUG_OUT("Engine initialization success\n", OutputOptions::None);
 	return true;
 
 Error:
-	DEBUG_OUT("Engine initialization failure", OutputOptions::Error);
+	DEBUG_OUT("Engine initialization failure\n", OutputOptions::Error);
 	return false;
 
 }

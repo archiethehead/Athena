@@ -19,7 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\Debug.h" />
     <ClInclude Include="Include\Debug\Logger.h" />
     <ClInclude Include="Include\engine.h" />
     <ClInclude Include="Include\Renderer\OpenGL.h" />
@@ -29,7 +28,6 @@
   <ItemGroup>
     <ClCompile Include="External\GLAD\src\gl.c" />
     <ClCompile Include="Source\Debug\Logger.cpp" />
-    <ClCompile Include="Source\Debug.cpp" />
     <ClCompile Include="Source\engine.cpp" />
     <ClCompile Include="Source\Renderer\OpenGL.cpp" />
     <ClCompile Include="Source\Renderer\renderer.cpp" />

@@ -7,10 +7,8 @@
 enum class OutputOptions : uint8_t {
 
 	None,
-	Wanring,
-	Error,
-	Underline,
-	Header
+	Warning,
+	Error
 
 };
 
@@ -38,8 +36,9 @@ private:
 	struct Log {
 
 		OutputOptions Option;
-		int Len;
+		size_t Len;
 		char Log[LOG_SIZE];
+		std::atomic<bool> IsReady = false;
 
 	};
 
@@ -50,6 +49,7 @@ private:
 
 	CLogger();
 	void ListenLoop();
+	void FormattedOutput(Log* CurrentLog);
 
 };
 
