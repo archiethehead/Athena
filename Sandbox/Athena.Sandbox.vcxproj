@@ -116,7 +116,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <AdditionalIncludeDirectories>.\Include;..\Engine\Include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Include;..\Engine\Include;..\Engine\External\glm\glm</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <AdditionalOptions>/experimental:deterministic /pathmap:"$(MSBuildProjectDirectory)"=https:\\github.com\archiethehead\Athena\tree\Sandbox %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>

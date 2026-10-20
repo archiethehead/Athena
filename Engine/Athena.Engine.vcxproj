@@ -24,9 +24,13 @@
     <ClInclude Include="Include\Renderer\OpenGL.h" />
     <ClInclude Include="Include\Renderer\renderer.h" />
     <ClInclude Include="Include\Viewport\viewport.h" />
+    <ClInclude Include="Include\Nodes\Node.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\GLAD\src\gl.c" />
+    <ClCompile Include="Include\Nodes\3D\Node3D.h" />
+    <ClCompile Include="Source\Nodes\3D\Node3D.cpp" />
+    <ClCompile Include="Source\Nodes\Node.cpp" />
     <ClCompile Include="Source\Debug\Logger.cpp" />
     <ClCompile Include="Source\engine.cpp" />
     <ClCompile Include="Source\Renderer\OpenGL.cpp" />
@@ -138,7 +142,7 @@
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <AssemblerOutput>AssemblyCode</AssemblerOutput>
-      <AdditionalIncludeDirectories>.\Include;.\External\SDL\include;.\External\GLAD\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\Include;.\External\SDL\include;.\External\GLAD\include;.\External\glm\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>

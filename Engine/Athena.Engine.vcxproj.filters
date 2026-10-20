@@ -16,6 +16,7 @@
     <ClInclude Include="Include\Renderer\OpenGL.h" />
     <ClInclude Include="Include\Viewport\viewport.h" />
     <ClInclude Include="Include\Debug\Logger.h" />
+    <ClInclude Include="Include\Nodes\Node.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\engine.cpp">
@@ -26,5 +27,8 @@
     <ClCompile Include="Source\Viewport\viewport.cpp" />
     <ClCompile Include="External\GLAD\src\gl.c" />
     <ClCompile Include="Source\Debug\Logger.cpp" />
+    <ClCompile Include="Source\Nodes\Node.cpp" />
+    <ClCompile Include="Include\Nodes\3D\Node3D.h" />
+    <ClCompile Include="Source\Nodes\3D\Node3D.cpp" />
   </ItemGroup>
 </Project>

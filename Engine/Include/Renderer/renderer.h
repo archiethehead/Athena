@@ -17,6 +17,7 @@ public:
 		OpenGL
 
 	};
+
 	static graphicsAPI currentGraphicsAPI;
 	static baseRenderer* createRenderer();
 
