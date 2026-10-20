@@ -4,7 +4,7 @@
 #include <thread>
 #include <cstdint>
 
-enum class OutputOptions : uint8_t {
+enum class outputOptions : uint8_t {
 
 	None,
 	Warning,
@@ -14,10 +14,10 @@ enum class OutputOptions : uint8_t {
 
 #ifdef _DEBUG
 
-#define DEBUG_OUT(x, y, ...) CLogger::GetLogger().Out(x, y, ##__VA_ARGS__)
-#define FLUSH_LOGGER() CLogger::GetLogger().Flush()
+#define DEBUG_OUT(x, y, ...) logger::getLogger().out(x, y, ##__VA_ARGS__)
+#define FLUSH_LOGGER() logger::getLogger().flush()
 
-class CLogger {
+class logger {
 
 public:
 
@@ -25,31 +25,31 @@ public:
 	static constexpr size_t LOG_BUFFER_MASK = LOG_BUFFER_SIZE - 1;
 	static constexpr size_t LOG_SIZE = 256;
 	
-	~CLogger();
-	static CLogger& GetLogger();
+	~logger();
+	static logger& getLogger();
 	
-	void Out(const char* Format, OutputOptions Option, ...);
-	void Flush();
+	void out(const char* Format, outputOptions option, ...);
+	void flush();
 
 private:
 
 	struct Log {
 
-		OutputOptions Option;
-		size_t Len;
-		char Log[LOG_SIZE];
+		outputOptions option;
+		size_t len;
+		char log[LOG_SIZE];
 		std::atomic<bool> IsReady = false;
 
 	};
 
-	Log m_LogBuffer_s[LOG_BUFFER_SIZE] = {};
-	alignas(64) std::atomic<size_t> m_STTail;
-	alignas(64) std::atomic<size_t> m_STHead;
+	Log logBuffer[LOG_BUFFER_SIZE] = {};
+	alignas(64) std::atomic<size_t> tail;
+	alignas(64) std::atomic<size_t> head;
 	std::thread m_LoggerListener;
 
-	CLogger();
-	void ListenLoop();
-	void FormattedOutput(Log* CurrentLog);
+	logger();
+	void listenLoop();
+	void formattedOutput(Log* CurrentLog);
 
 };
 

@@ -2,22 +2,22 @@
 
 struct SDL_Window;
 
-class CBaseRenderer {
+class baseRenderer {
 
 public:
 	
-	virtual bool Init(SDL_Window* WindowHandle) { return false; }
+	virtual bool init(SDL_Window* windowHandle) { return false; }
 
-	virtual void ClearColour() {};
-	virtual void BeginFrame() {};
-	virtual void EndFrame() {};
+	virtual void clearColour() {};
+	virtual void beginFrame() {};
+	virtual void endFrame() {};
 
-	enum m_EGraphicsAPI: char {
+	enum graphicsAPI: char {
 
 		OpenGL
 
 	};
-	static m_EGraphicsAPI s_ICurrentGraphicsAPI;
-	static CBaseRenderer* CreateRenderer();
+	static graphicsAPI currentGraphicsAPI;
+	static baseRenderer* createRenderer();
 
 };

@@ -11,63 +11,63 @@
 
 #include <string>
 
-CAthenaEngine::CAthenaEngine() :	m_PViewport(CViewport::GetViewport()),
-									m_PRenderer(CBaseRenderer::CreateRenderer()) {
+athenaEngine::athenaEngine() :	viewport(viewport::getViewport()),
+									renderer(baseRenderer::createRenderer()) {
 
 #ifdef _WIN32
 
-	SetUnhandledExceptionFilter(HandleExceptionCrash);
-	AddVectoredContinueHandler(1, HandleExceptionCrash);
+	SetUnhandledExceptionFilter(handleExceptionCrash);
+	AddVectoredContinueHandler(1, handleExceptionCrash);
 
 #endif
 
-	std::signal(SIGFPE, HandleSignalCrash);
-	std::signal(SIGILL, HandleSignalCrash);
-	std::signal(SIGSEGV, HandleSignalCrash);	
+	std::signal(SIGFPE, handleSignalCrash);
+	std::signal(SIGILL, handleSignalCrash);
+	std::signal(SIGSEGV, handleSignalCrash);	
 
 };
 
-void CAthenaEngine::Update(float fDelta) {
+void athenaEngine::update(float fDelta) {
 	
 	return;
 
 }
 
-void CAthenaEngine::SetCrashCallback(CrashCallbackFunction CrashCallback) {
+void athenaEngine::setCrashCallback(CrashCallbackFunction CrashCallback) {
 
 	s_SandboxCrashCallback = CrashCallback;
 
 }
 
-bool CAthenaEngine::Init(int x, int y) {
+bool athenaEngine::init(int x, int y) {
 
-	DEBUG_OUT("ATHENA ENGINE\n", OutputOptions::None);
-	DEBUG_OUT("\nInitializing Engine\n", OutputOptions::None);
+	DEBUG_OUT("ATHENA ENGINE\n", outputOptions::None);
+	DEBUG_OUT("\nInitializing Engine\n", outputOptions::None);
 
-	if (!m_PViewport->Init(x, y)) goto Error;
-	if (!m_PRenderer->Init(m_PViewport->GetWindowHandle())) goto Error;
+	if (!viewport->init(x, y)) goto Error;
+	if (!renderer->init(viewport->getWindowHandle())) goto Error;
 
-	DEBUG_OUT("Engine initialization success\n", OutputOptions::None);
+	DEBUG_OUT("Engine initialization success\n", outputOptions::None);
 	return true;
 
 Error:
-	DEBUG_OUT("Engine initialization failure\n", OutputOptions::Error);
+	DEBUG_OUT("Engine initialization failure\n", outputOptions::Error);
 	return false;
 
 }
 
-CAthenaEngine& CAthenaEngine::GetEngine() {
+athenaEngine& athenaEngine::GetEngine() {
 
-	static CAthenaEngine s_PEngineSingleton;
+	static athenaEngine s_PEngineSingleton;
 	return s_PEngineSingleton;
 
 }
 
 #ifdef _WIN32
 
-LONG WINAPI CAthenaEngine::HandleExceptionCrash(struct _EXCEPTION_POINTERS* ExceptionInformation) {
+LONG WINAPI athenaEngine::handleExceptionCrash(struct _EXCEPTION_POINTERS* ExceptionInformation) {
 
-	CrashProcedure();
+	crashProcedure();
 
 	const char* CrashDescription = "An unkown exception has occured, terminating program.";
 	DWORD Exception = ExceptionInformation->ExceptionRecord->ExceptionCode;
@@ -113,7 +113,7 @@ LONG WINAPI CAthenaEngine::HandleExceptionCrash(struct _EXCEPTION_POINTERS* Exce
 
 	std::stacktrace CStackTrace = std::stacktrace::current();
 	std::string CrashMessage = std::to_string(CStackTrace).insert(0, "\nStack Trace:\n").insert(0, CrashDescription);
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Crash Report", CrashMessage.c_str(), CViewport::GetViewport()->GetWindowHandle());
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Crash Report", CrashMessage.c_str(), viewport::getViewport()->getWindowHandle());
 
 #else
 
@@ -121,7 +121,7 @@ LONG WINAPI CAthenaEngine::HandleExceptionCrash(struct _EXCEPTION_POINTERS* Exce
 
 #endif // _MSVC_LANG == 202302L
 
-	KillProgram();
+	killProgram();
 
 	return EXCEPTION_EXECUTE_HANDLER;
 
@@ -130,9 +130,9 @@ LONG WINAPI CAthenaEngine::HandleExceptionCrash(struct _EXCEPTION_POINTERS* Exce
 #endif // ifdef _WIN32
 
 
-void CAthenaEngine::HandleSignalCrash(int Signal) {
+void athenaEngine::handleSignalCrash(int Signal) {
 
-	CrashProcedure();
+	crashProcedure();
 
 	const char* CrashDescription;
 
@@ -160,7 +160,7 @@ void CAthenaEngine::HandleSignalCrash(int Signal) {
 
 	std::stacktrace CStackTrace = std::stacktrace::current();
 	std::string CrashMessage = std::to_string(CStackTrace).insert(0, "\nStack Trace:\n").insert(0, CrashDescription);
-	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Crash Report", CrashMessage.c_str(), CViewport::GetViewport()->GetWindowHandle());
+	SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Crash Report", CrashMessage.c_str(), viewport::getViewport()->getWindowHandle());
 
 #else
 
@@ -168,17 +168,17 @@ void CAthenaEngine::HandleSignalCrash(int Signal) {
 
 #endif
 
-	KillProgram();
+	killProgram();
 
 }
 
-void CAthenaEngine::CrashProcedure() {
+void athenaEngine::crashProcedure() {
 
 	FLUSH_LOGGER();
 
 }
 
-void CAthenaEngine::KillProgram() {
+void athenaEngine::killProgram() {
 
 	if (s_SandboxCrashCallback != nullptr)
 		s_SandboxCrashCallback();

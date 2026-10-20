@@ -2,22 +2,22 @@
 #include "Debug/Logger.h"
 #include "glad/gl.h"
 
-bool COpenGLRenderer::Init(SDL_Window* WindowHandle) {
+bool openGLRenderer::init(SDL_Window* WindowHandle) {
 
-	COpenGLRenderer::m_PWindowHandle = WindowHandle;
-	COpenGLRenderer::m_OGLContext = SDL_GL_CreateContext(COpenGLRenderer::m_PWindowHandle);
+	openGLRenderer::windowHandle = WindowHandle;
+	openGLRenderer::GLContext = SDL_GL_CreateContext(openGLRenderer::windowHandle);
 
-	if (!COpenGLRenderer::m_OGLContext) goto Error;
-	if(!SDL_GL_MakeCurrent(m_PWindowHandle, m_OGLContext)) goto Error;
+	if (!openGLRenderer::GLContext) goto Error;
+	if(!SDL_GL_MakeCurrent(windowHandle, GLContext)) goto Error;
 	gladLoadGL((GLADloadfunc)SDL_GL_GetProcAddress);
 
-	DEBUG_OUT("OpenGL initialization success\n", OutputOptions::None);
+	DEBUG_OUT("OpenGL initialization success\n", outputOptions::None);
 
 	return true;
 
 Error:
 	SDL_Quit();
-	DEBUG_OUT("OpenGL init failed, %s\n", OutputOptions::Error, SDL_GetError());
+	DEBUG_OUT("OpenGL init failed, %s\n", outputOptions::Error, SDL_GetError());
 	return false;
 
 }

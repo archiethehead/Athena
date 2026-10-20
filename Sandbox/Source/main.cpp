@@ -11,7 +11,7 @@
 
 #endif // ifdef _WIN32
 
-void Crash() {
+void crash() {
 
 	exit(EXIT_FAILURE);
 
@@ -20,14 +20,14 @@ void Crash() {
 
 int main() {
 	
-	CAthenaEngine Engine = CAthenaEngine::GetEngine();
-	Engine.SetCrashCallback(Crash);
+	athenaEngine engine = athenaEngine::GetEngine();
+	engine.setCrashCallback(crash);
 
-	if (!Engine.Init(540, 480)) return -1;
+	if (!engine.init(540, 480)) return -1;
 
 	while (true) {
 
-		Engine.Update(CDelta::GetDeltaTime());
+		engine.update(CDelta::GetDeltaTime());
 
 	}
 

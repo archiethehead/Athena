@@ -2,18 +2,18 @@
 
 struct SDL_Window;
 
-class CViewport {
+class viewport {
 
 public:
 
-	~CViewport() = default;
-	static CViewport* GetViewport();
+	~viewport() = default;
+	static viewport* getViewport();
 
-	bool Init(int x, int y);
-	SDL_Window* GetWindowHandle();
+	bool init(int x, int y);
+	SDL_Window* getWindowHandle();
 
 private:
-	CViewport() = default;
-	SDL_Window* m_WindowHandle_t;
+	viewport() = default;
+	SDL_Window* windowHandle;
 
 };

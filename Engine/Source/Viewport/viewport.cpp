@@ -2,38 +2,38 @@
 #include "SDL3/SDL.h"
 #include "Debug/Logger.h"
 
-bool CViewport::Init(int x, int y) {
+bool viewport::init(int x, int y) {
 
 	if (!SDL_Init(SDL_INIT_VIDEO)) goto Error;
 
-	m_WindowHandle_t = SDL_CreateWindow("Athena Engine", x, y, SDL_WINDOW_OPENGL);
+	windowHandle = SDL_CreateWindow("Athena Engine", x, y, SDL_WINDOW_OPENGL);
 
-	if (!m_WindowHandle_t) goto Error;
+	if (!windowHandle) goto Error;
 
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
-	DEBUG_OUT("Viewport initialization success\n", OutputOptions::None);
+	DEBUG_OUT("Viewport initialization success\n", outputOptions::None);
 
 	return true;
 
 Error:
 	SDL_Quit();
-	DEBUG_OUT("Viewport init failed, %s\n", OutputOptions::Error, SDL_GetError());
+	DEBUG_OUT("Viewport init failed, %s\n", outputOptions::Error, SDL_GetError());
 	return false;
 
 }
 
-SDL_Window* CViewport::GetWindowHandle() {
+SDL_Window* viewport::getWindowHandle() {
 
-	return m_WindowHandle_t;
+	return windowHandle;
 
 }
 
-CViewport* CViewport::GetViewport() {
+viewport* viewport::getViewport() {
 
-	static CViewport SViewport = CViewport();
-	return &SViewport;
+	static viewport viewportSingleton = viewport();
+	return &viewportSingleton;
 
 }

@@ -26,30 +26,30 @@
 typedef void (*CrashCallbackFunction)();
 static CrashCallbackFunction s_SandboxCrashCallback = nullptr;
 
-class DLL_LINK CAthenaEngine {
+class DLL_LINK athenaEngine {
 
 public:
-	~CAthenaEngine() = default;
-	void Update(float fDelta);
-	void SetCrashCallback(CrashCallbackFunction FPCrashCallback);
-	bool Init(int x, int y);
-	static CAthenaEngine& GetEngine();
+	~athenaEngine() = default;
+	void update(float fDelta);
+	void setCrashCallback(CrashCallbackFunction FPCrashCallback);
+	bool init(int x, int y);
+	static athenaEngine& GetEngine();
 
 private:
 
-	CViewport* m_PViewport;
-	CBaseRenderer* m_PRenderer;
+	viewport* viewport;
+	baseRenderer* renderer;
 
-	CAthenaEngine();
+	athenaEngine();
 
 #ifdef _WIN32
 
-	static LONG WINAPI HandleExceptionCrash(struct _EXCEPTION_POINTERS* ExceptionInformation);
+	static LONG WINAPI handleExceptionCrash(struct _EXCEPTION_POINTERS* ExceptionInformation);
 
 #endif // ifdef _WIN32
 
-	static void HandleSignalCrash(int Signal);
-	static void CrashProcedure();
-	static void KillProgram();
+	static void handleSignalCrash(int Signal);
+	static void crashProcedure();
+	static void killProgram();
 
 };

@@ -4,16 +4,16 @@
 #include "Renderer/renderer.h"
 
 
-class COpenGLRenderer : public CBaseRenderer {
+class openGLRenderer : public baseRenderer {
 
 public:
-	COpenGLRenderer() = default;
-	~COpenGLRenderer() = default;
-	bool Init(SDL_Window* WindowHandle) override;
-	void ClearColour() {};
+	openGLRenderer() = default;
+	~openGLRenderer() = default;
+	bool init(SDL_Window* WindowHandle) override;
+	void clearColour() {};
 
 private:
-	SDL_GLContext m_OGLContext = nullptr;
-	SDL_Window* m_PWindowHandle = nullptr;
+	SDL_GLContext GLContext = nullptr;
+	SDL_Window* windowHandle = nullptr;
 
 };

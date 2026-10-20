@@ -2,25 +2,25 @@
 #include "Renderer/openGL.h"
 #include "SDL3/SDL.h"
 
-CBaseRenderer::m_EGraphicsAPI CBaseRenderer::s_ICurrentGraphicsAPI = CBaseRenderer::m_EGraphicsAPI::OpenGL;
+baseRenderer::graphicsAPI baseRenderer::currentGraphicsAPI = baseRenderer::graphicsAPI::OpenGL;
 
-CBaseRenderer* CBaseRenderer::CreateRenderer() {
+baseRenderer* baseRenderer::createRenderer() {
 
-	static CBaseRenderer* s_PRendererSingleton = nullptr;
+	static baseRenderer* rendererSingleton = nullptr;
 
-	if (s_PRendererSingleton == nullptr) {
+	if (rendererSingleton == nullptr) {
 
-		switch (CBaseRenderer::s_ICurrentGraphicsAPI) {
+		switch (baseRenderer::currentGraphicsAPI) {
 
-		case CBaseRenderer::m_EGraphicsAPI::OpenGL:
+		case baseRenderer::graphicsAPI::OpenGL:
 
-			s_PRendererSingleton = new COpenGLRenderer();
+			rendererSingleton = new openGLRenderer();
 
 
 		}
 
 	}
 
-	return s_PRendererSingleton;
+	return rendererSingleton;
 
 }
