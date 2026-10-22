@@ -19,23 +19,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Include\Debug\Logger.h" />
+    <ClInclude Include="Include\debug\logger.h" />
     <ClInclude Include="Include\engine.h" />
-    <ClInclude Include="Include\Renderer\OpenGL.h" />
-    <ClInclude Include="Include\Renderer\renderer.h" />
-    <ClInclude Include="Include\Viewport\viewport.h" />
-    <ClInclude Include="Include\Nodes\Node.h" />
+    <ClInclude Include="Include\renderer\openGL.h" />
+    <ClInclude Include="Include\renderer\renderer.h" />
+    <ClInclude Include="Include\viewport\viewport.h" />
+    <ClInclude Include="Include\nodes\Node.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="External\GLAD\src\gl.c" />
-    <ClCompile Include="Include\Nodes\3D\Node3D.h" />
-    <ClCompile Include="Source\Nodes\3D\Node3D.cpp" />
-    <ClCompile Include="Source\Nodes\Node.cpp" />
-    <ClCompile Include="Source\Debug\Logger.cpp" />
+    <ClCompile Include="Include\nodes\3D\mesh3D.h" />
+    <ClCompile Include="Source\nodes\3D\mesh3D.cpp" />
+    <ClCompile Include="Include\nodes\3D\node3D.h" />
+    <ClCompile Include="Source\nodes\3D\node3D.cpp" />
+    <ClCompile Include="Source\nodes\node.cpp" />
+    <ClCompile Include="Source\debug\logger.cpp" />
     <ClCompile Include="Source\engine.cpp" />
-    <ClCompile Include="Source\Renderer\OpenGL.cpp" />
-    <ClCompile Include="Source\Renderer\renderer.cpp" />
-    <ClCompile Include="Source\Viewport\viewport.cpp" />
+    <ClCompile Include="Source\renderer\openGL.cpp" />
+    <ClCompile Include="Source\renderer\renderer.cpp" />
+    <ClCompile Include="Source\viewport\viewport.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="External\SDL\VisualC\SDL\SDL.vcxproj">

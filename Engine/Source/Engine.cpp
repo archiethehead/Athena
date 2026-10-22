@@ -11,6 +11,7 @@
 
 #include <string>
 
+
 athenaEngine::athenaEngine() :	viewport(viewport::getViewport()),
 								renderer(baseRenderer::createRenderer()) {
 
