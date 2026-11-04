@@ -5,6 +5,11 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+    <BaseOutputPath>$(SolutionDir)\x64\$(Configuration)\</BaseOutputPath>
+    <BaseIntermediateOutputPath>$(SolutionDir)\x64\$(Configuration)\Athena.Editor\</BaseIntermediateOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -23,4 +28,12 @@
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sandbox\Athena.Sandbox.vcxproj" />
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="rd obj /s /q" />
+  </Target>
 </Project>
